@@ -32,7 +32,7 @@ function App() {
           <ul
             style={{
               display: 'flex',
-              width: '45%',
+              width: '40%',
               flexDirection: 'column',
               alignItems: 'center',
               justifyContent: 'center',
