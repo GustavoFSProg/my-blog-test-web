@@ -1,5 +1,6 @@
 import { useEffect } from 'react'
 import { useState } from 'react'
+// import { useHistory } from 'react-router-dom'
 import api from './api'
 
 function App() {
@@ -13,9 +14,17 @@ function App() {
     setData(data)
   }
 
+  async function handleLike(id) {
+    await api.put(`/likes/${id}`)
+  }
+
+  async function handleViews(id) {
+    await api.put(`/views/${id}`)
+  }
+
   useEffect(() => {
     getPosts()
-  }, [])
+  }, [data])
 
   return (
     <div
@@ -68,11 +77,13 @@ function App() {
             <li>
               <strong>Likes:</strong>
               {item.likes}
+              <button onClick={() => handleLike(item.id)}>Like</button>
             </li>
             <br />
             <li>
               <strong>Views</strong>
               {item.views}
+              <button onClick={() => handleViews(item.id)}>Views</button>
             </li>
           </ul>
         )
