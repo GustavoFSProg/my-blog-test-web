@@ -16,11 +16,12 @@ function App() {
   useEffect(() => {
     getPosts()
   }, [])
+
   return (
     <div
       style={{
         display: 'flex',
-        width: '60%',
+        width: '100%',
         flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'center',
@@ -31,18 +32,20 @@ function App() {
           <ul
             style={{
               display: 'flex',
-              width: '60%',
+              width: '45%',
               flexDirection: 'column',
               alignItems: 'center',
               justifyContent: 'center',
+              listStyle: 'none',
             }}
             key={item.id}
           >
             <br />
             <br />
             <li>
-              <strong>Titulo:</strong>
-              {item.title}
+              <strong>
+                <h1>{item.title}</h1>
+              </strong>
             </li>
             <br />
             <br />
