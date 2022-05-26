@@ -56,7 +56,7 @@ function Post() {
         <br />
         <br />
         <li>
-          <img src={datas.image} alt="imagem" width="200" />
+          <img src={datas.image} alt="imagem" width="480" />
         </li>
         <br />
         <br />

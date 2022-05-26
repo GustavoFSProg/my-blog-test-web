@@ -65,7 +65,7 @@ function App() {
             <br />
             <li style={{ cursor: 'pointer' }}>
               <Link to="/post" onClick={() => handleViews(item.id)}>
-                <img src={item.image} alt="imagem" width="200" />
+                <img src={item.image} alt="imagem" width="310" />
               </Link>
             </li>
             <br />
@@ -73,7 +73,7 @@ function App() {
             <li>
               <strong>Post:</strong>
               <Link style={{ cursor: 'pointer' }} to="/post" onClick={() => handleViews(item.id)}>
-                {item.text}
+                {item.description}
               </Link>
             </li>
             <br />
@@ -86,9 +86,9 @@ function App() {
             <li>
               <strong>Likes:</strong>
               {item.likes}
-              <button disabled={isButtonClicked} onClick={() => handleLike(item.id)}>
+              {/* <button disabled={isButtonClicked} onClick={() => handleLike(item.id)}>
                 Like
-              </button>
+              </button> */}
             </li>
             <br />
             <li>
