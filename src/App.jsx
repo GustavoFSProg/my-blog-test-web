@@ -1,10 +1,11 @@
 import { useEffect } from 'react'
 import { useState } from 'react'
-// import { useHistory } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import api from './api'
 
 function App() {
   const [data, setData] = useState([])
+  const [isButtonClicked, setIsButtonClicked] = useState()
 
   async function getPosts() {
     const { data } = await api.get('/get-all')
@@ -16,10 +17,14 @@ function App() {
 
   async function handleLike(id) {
     await api.put(`/likes/${id}`)
+
+    setIsButtonClicked(true)
   }
 
   async function handleViews(id) {
     await api.put(`/views/${id}`)
+
+    localStorage.setItem('PostId', id)
   }
 
   useEffect(() => {
@@ -58,14 +63,18 @@ function App() {
             </li>
             <br />
             <br />
-            <li>
-              <img src={item.image} alt="imagem" width="200" />
+            <li style={{ cursor: 'pointer' }}>
+              <Link to="/post" onClick={() => handleViews(item.id)}>
+                <img src={item.image} alt="imagem" width="200" />
+              </Link>
             </li>
             <br />
             <br />
             <li>
               <strong>Post:</strong>
-              {item.text}
+              <Link style={{ cursor: 'pointer' }} to="/post" onClick={() => handleViews(item.id)}>
+                {item.text}
+              </Link>
             </li>
             <br />
             <br />
@@ -77,13 +86,14 @@ function App() {
             <li>
               <strong>Likes:</strong>
               {item.likes}
-              <button onClick={() => handleLike(item.id)}>Like</button>
+              <button disabled={isButtonClicked} onClick={() => handleLike(item.id)}>
+                Like
+              </button>
             </li>
             <br />
             <li>
-              <strong>Views</strong>
+              <strong>Views: __</strong>
               {item.views}
-              <button onClick={() => handleViews(item.id)}>Views</button>
             </li>
           </ul>
         )
