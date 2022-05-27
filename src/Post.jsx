@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import api from './api'
@@ -5,6 +6,11 @@ import api from './api'
 function Post() {
   const [datas, setDatas] = useState([])
   const [isButtonClicked, setIsButtonClicked] = useState()
+  const [author, setAuthor] = useState('')
+  const [comment, setComent] = useState('')
+  // const [post_id, setPostId] = useState('')
+
+  const id = localStorage.getItem('PostId')
 
   async function getPost() {
     const id = localStorage.getItem('PostId')
@@ -24,7 +30,28 @@ function Post() {
     setIsButtonClicked(true)
   }
 
-  getPost()
+  async function handleComment(e) {
+    e.preventDefault()
+
+    alert('Entrou!')
+
+    try {
+      const id = localStorage.getItem('PostId')
+
+      const data = { post_id: id, comment: comment, author: author }
+
+      // await api.post(`/comments-register/${id}`, data)
+      await api.post(`/comments/${id}`, data)
+
+      return alert('Comentario enviado!!')
+    } catch (error) {
+      return alert('ERRO!!', error)
+    }
+  }
+
+  useEffect(() => {
+    getPost()
+  }, [])
 
   return (
     <div
@@ -84,6 +111,29 @@ function Post() {
           {datas.views}
         </li>
       </ul>
+      <form onSubmit={handleComment}>
+        Comentarios
+        <p>
+          Autor:
+          <input
+            id="author"
+            value={author}
+            onChange={(e) => setAuthor(e.target.value)}
+            style={{ width: '24rem', height: '1.4rem', marginLeft: '8px' }}
+            type="text"
+          />
+        </p>
+        <p>Comentario:</p>
+        <textarea
+          id="comment"
+          value={comment}
+          onChange={(e) => setComent(e.target.value)}
+          cols="53"
+          rows={14}
+        ></textarea>
+        <br />
+        <button type="submit">Enviar</button>
+      </form>
     </div>
   )
 }
