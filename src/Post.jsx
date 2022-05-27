@@ -51,7 +51,7 @@ function Post() {
 
   useEffect(() => {
     getPost()
-  }, [])
+  }, [datas])
 
   return (
     <div
