@@ -1,7 +1,9 @@
 import { useEffect } from 'react'
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
+import { GrLike } from 'react-icons/gr'
 import api from './api'
+import { Container, Button } from './style-post'
 
 function Post() {
   const [datas, setDatas] = useState([])
@@ -63,15 +65,7 @@ function Post() {
   getComments()
 
   return (
-    <div
-      style={{
-        display: 'flex',
-        width: '100%',
-        flexDirection: 'column',
-        alignItems: 'center',
-        justifyContent: 'center',
-      }}
-    >
+    <Container>
       <ul
         style={{
           display: 'flex',
@@ -110,9 +104,9 @@ function Post() {
         <li>
           <strong>Likes:</strong>
           {datas.likes}
-          <button disabled={isButtonClicked} onClick={() => handleLike(datas.id)}>
-            Like
-          </button>
+          <Button disabled={isButtonClicked} onClick={() => handleLike(datas.id)}>
+            <GrLike size={21} />
+          </Button>
         </li>
         <br />
         <li>
@@ -140,7 +134,7 @@ function Post() {
         })}
       </div>
       <form onSubmit={handleComment}>
-        Comentarios
+        Comentarios{' '}
         <p>
           Autor:
           <input
@@ -160,9 +154,12 @@ function Post() {
           rows={14}
         ></textarea>
         <br />
-        <button type="submit">Enviar</button>
+        <Button type="submit">Enviar</Button>
       </form>
-    </div>
+      <br />
+      <br />
+      <br />
+    </Container>
   )
 }
 
