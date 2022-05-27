@@ -58,7 +58,8 @@ function Post() {
 
   useEffect(() => {
     getPost()
-  }, [])
+  }, [datas])
+
   getComments()
 
   return (
