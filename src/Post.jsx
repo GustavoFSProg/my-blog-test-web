@@ -8,13 +8,12 @@ function Post() {
   const [isButtonClicked, setIsButtonClicked] = useState()
   const [author, setAuthor] = useState('')
   const [comment, setComent] = useState('')
+  const [commentary, setCommentary] = useState([])
   // const [post_id, setPostId] = useState('')
 
   const id = localStorage.getItem('PostId')
 
   async function getPost() {
-    const id = localStorage.getItem('PostId')
-
     console.log(id)
     const { data } = await api.get(`/get-post/${id}`)
 
@@ -25,6 +24,16 @@ function Post() {
     return data
   }
 
+  async function getComments() {
+    const id = localStorage.getItem('PostId')
+
+    const { data } = await api.get(`/get-comments/${id}`)
+
+    console.log(data)
+    setCommentary(data)
+    return data
+  }
+
   async function handleLike(id) {
     await api.put(`/likes/${id}`)
     setIsButtonClicked(true)
@@ -32,8 +41,6 @@ function Post() {
 
   async function handleComment(e) {
     e.preventDefault()
-
-    alert('Entrou!')
 
     try {
       const id = localStorage.getItem('PostId')
@@ -51,7 +58,8 @@ function Post() {
 
   useEffect(() => {
     getPost()
-  }, [datas])
+  }, [])
+  getComments()
 
   return (
     <div
@@ -111,6 +119,25 @@ function Post() {
           {datas.views}
         </li>
       </ul>
+      <div>
+        {commentary.map((item) => {
+          return (
+            <>
+              <div>
+                <p>
+                  {' '}
+                  <strong>Autor:</strong>{' '}
+                </p>
+                <p> {item.author} </p>
+                <strong>Comentario:</strong>
+                <p> {item.comment} </p>
+                <br />
+                <br />
+              </div>
+            </>
+          )
+        })}
+      </div>
       <form onSubmit={handleComment}>
         Comentarios
         <p>
