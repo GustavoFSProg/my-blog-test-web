@@ -35,6 +35,14 @@ export const Button = styled.button`
   transition: ease 0.7s;
 
   &:hover {
-    background: blue;
+    background: white;
+    color: lightgrey;
   }
+`
+export const Text = styled.p`
+  width: 90%;
+  font-family: 'Roboto 500';
+  font-size: 1.2rem;
+  list-style: none;
+  margin-left: 45px;
 `

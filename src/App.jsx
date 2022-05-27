@@ -2,7 +2,8 @@ import { useEffect } from 'react'
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import api from './api'
-import { Container, Card } from './style-app'
+import { Container, Card, Text } from './style-app'
+import moment from 'moment'
 
 function App() {
   const [data, setData] = useState([])
@@ -16,6 +17,9 @@ function App() {
     setData(data)
   }
 
+  function getDateWithoutTime(date) {
+    return moment(date).format('DD/MM/YYYY')
+  }
   async function handleLike(id) {
     await api.put(`/likes/${id}`)
 
@@ -37,7 +41,12 @@ function App() {
       {data.map((item) => {
         return (
           <Card>
-            <ul style={{}} key={item.id}>
+            <ul
+              style={{
+                listStyle: 'none',
+              }}
+              key={item.id}
+            >
               <br />
               <br />
               <li>
@@ -47,7 +56,7 @@ function App() {
               </li>
               <br />
               <br />
-              <li style={{ cursor: 'pointer' }}>
+              <li style={{ listStyle: 'none', cursor: 'pointer' }}>
                 <Link to="/post" onClick={() => handleViews(item.id)}>
                   <img src={item.image} alt="imagem" width="310" />
                 </Link>
@@ -55,29 +64,28 @@ function App() {
               <br />
               <br />
               <li>
-                <strong>Post:</strong>
-                <Link style={{ cursor: 'pointer' }} to="/post" onClick={() => handleViews(item.id)}>
-                  {item.description}
+                <Link
+                  style={{ textDecoration: 'none', cursor: 'pointer' }}
+                  to="/post"
+                  onClick={() => handleViews(item.id)}
+                >
+                  <Text>{item.description}</Text>
                 </Link>
               </li>
               <br />
               <br />
               <li>
-                <strong>Data:</strong>
-                {item.createdAt}
+                <strong>Data: {getDateWithoutTime(item.createdAt)}</strong>
               </li>
               <br />
               <li>
                 <strong>Likes:</strong>
                 {item.likes}
-                {/* <button disabled={isButtonClicked} onClick={() => handleLike(item.id)}>
-                Like
-              </button> */}
               </li>
               <br />
               <li>
                 <strong>Views: __</strong>
-                {item.views}
+                <Text>{item.views}</Text>
               </li>
             </ul>
           </Card>

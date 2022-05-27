@@ -23,3 +23,10 @@ export const Card = styled.div`
   padding-bottom: 70px;
   border-radius: 40px;
 `
+export const Text = styled.p`
+  text-align: right;
+  width: 50%;
+  font-family: 'Roboto 500';
+  font-size: 1.5rem;
+  list-style: none;
+`

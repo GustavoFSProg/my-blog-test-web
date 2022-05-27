@@ -1,9 +1,9 @@
-import { useEffect } from 'react'
+import React, { useEffect } from 'react'
 import { useState } from 'react'
-import { Link } from 'react-router-dom'
 import { GrLike } from 'react-icons/gr'
 import api from './api'
-import { Container, Button } from './style-post'
+import { Container, Button, Text } from './style-post'
+import moment from 'moment'
 
 function Post() {
   const [datas, setDatas] = useState([])
@@ -11,7 +11,6 @@ function Post() {
   const [author, setAuthor] = useState('')
   const [comment, setComent] = useState('')
   const [commentary, setCommentary] = useState([])
-  // const [post_id, setPostId] = useState('')
 
   const id = localStorage.getItem('PostId')
 
@@ -24,6 +23,10 @@ function Post() {
     setDatas(data)
 
     return data
+  }
+
+  function getDateWithoutTime(date) {
+    return moment(date).format('DD/MM/YYYY')
   }
 
   async function getComments() {
@@ -91,14 +94,12 @@ function Post() {
         <br />
         <br />
         <li>
-          <strong>Post:</strong>
-          {datas.text}
+          <Text>{datas.text}</Text>
         </li>
         <br />
         <br />
         <li>
-          <strong>datas:</strong>
-          {datas.createdAt}
+          <strong> Data: {getDateWithoutTime(datas.createdAt)} </strong>
         </li>
         <br />
         <li>
