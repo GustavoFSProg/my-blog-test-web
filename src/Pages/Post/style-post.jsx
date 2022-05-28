@@ -23,10 +23,34 @@ export const Card = styled.div`
   padding-bottom: 70px;
   border-radius: 40px;
 `
+export const Button = styled.button`
+  width: 100%;
+  height: auto;
+  background: lightgrey;
+  color: black;
+  border-radius: 12px;
+  padding-top: 6px;
+  padding-bottom: 6px;
+  margin-top: 20px;
+  transition: ease 0.7s;
+
+  &:hover {
+    background: white;
+    color: lightgrey;
+  }
+`
 export const Text = styled.p`
-  text-align: right;
-  width: 50%;
+  width: 90%;
   font-family: 'Roboto 500';
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   list-style: none;
+  margin-left: 45px;
+`
+export const Header = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 26%;
+  margin-top: 10px;
+  margin-bottom: 10px;
 `

@@ -1,11 +1,11 @@
 import { useEffect } from 'react'
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
-import api from './api'
-import { Container, Card, Text } from './style-app'
+import api from '../../services/api'
+import { Container, Card, Text, Header } from './style-home'
 import moment from 'moment'
 
-function App() {
+function Home() {
   const [data, setData] = useState([])
   const [isButtonClicked, setIsButtonClicked] = useState()
 
@@ -38,6 +38,20 @@ function App() {
 
   return (
     <Container>
+      <Header>
+        <Link to="/">
+          <span style={{ fontSize: '1.5rem' }}>Home</span>
+        </Link>
+        <br />
+        <Link to="/post">
+          <span style={{ fontSize: '1.5rem' }}>Post</span>
+        </Link>
+        <br />
+        <Link to="/register">
+          <span style={{ fontSize: '1.5rem' }}>Cadastrar</span>
+        </Link>
+      </Header>
+
       {data.map((item) => {
         return (
           <Card>
@@ -95,4 +109,4 @@ function App() {
   )
 }
 
-export default App
+export default Home

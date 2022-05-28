@@ -1,9 +1,10 @@
 import React, { useEffect } from 'react'
 import { useState } from 'react'
 import { GrLike } from 'react-icons/gr'
-import api from './api'
-import { Container, Button, Text } from './style-post'
+import api from '../../services/api'
+import { Container, Button, Text, Header } from './style-post'
 import moment from 'moment'
+import { Link } from 'react-router-dom'
 
 function Post() {
   const [datas, setDatas] = useState([])
@@ -69,6 +70,19 @@ function Post() {
 
   return (
     <Container>
+      <Header>
+        <Link to="/">
+          <span style={{ fontSize: '1.5rem' }}>Home</span>
+        </Link>
+        <br />
+        <Link to="/post">
+          <span style={{ fontSize: '1.5rem' }}>Post</span>
+        </Link>
+        <br />
+        <Link to="/register">
+          <span style={{ fontSize: '1.5rem' }}>Cadastrar</span>
+        </Link>
+      </Header>
       <ul
         style={{
           display: 'flex',
@@ -115,7 +129,7 @@ function Post() {
           {datas.views}
         </li>
       </ul>
-      <div>
+      <div style={{ width: '37%' }}>
         {commentary.map((item) => {
           return (
             <>

@@ -24,14 +24,13 @@ export const Card = styled.div`
   border-radius: 40px;
 `
 export const Button = styled.button`
-  width: 76%;
-  height: auto;
+  width: 100%;
+  height: 45px;
   background: lightgrey;
   color: black;
   border-radius: 12px;
   padding-top: 6px;
   padding-bottom: 6px;
-  margin-top: 20px;
   transition: ease 0.7s;
 
   &:hover {
@@ -45,4 +44,28 @@ export const Text = styled.p`
   font-size: 1.2rem;
   list-style: none;
   margin-left: 45px;
+`
+export const Input = styled.input`
+  width: 100%;
+  background: #ffffcc;
+  border-radius: 15px;
+  height: 2rem;
+  margin-top: 8px;
+  margin-bottom: 28px;
+  border: 1px solid lightgray;
+`
+export const Header = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 26%;
+  margin-top: 10px;
+  margin-bottom: 10px;
+`
+
+export const Form = styled.form`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
 `
